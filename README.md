@@ -22,7 +22,7 @@
 | `!random` | Get a random question of any type |
 | `!stats` | Show bot statistics and cache status |
 | `!refresh` | Refresh the question cache |
-| `!help` | Show help information |
+| `!info` | Show help information |
 
 ## 🛠️ Setup Instructions
 

@@ -66,7 +66,7 @@ EMBED_COLORS = {
 
 # Bot status messages
 STATUS_MESSAGES = [
-    "!help for commands",
+    "!info for commands",
     "Scraping questions...",
     "Truth or Dare?",
     "Would you rather...",

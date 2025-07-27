@@ -14,9 +14,13 @@ from scraper import QuestionScraper
 load_dotenv()
 
 # Bot configuration
-intents = discord.Intents.default()
+intents = discord.Intents.none()  # Start with no intents
 intents.message_content = True
-intents.members = True
+intents.guilds = True
+intents.messages = True
+# Explicitly disable privileged intents
+intents.members = False
+intents.presences = False
 
 bot = commands.Bot(command_prefix=COMMAND_PREFIX, intents=intents)
 
@@ -145,8 +149,8 @@ async def refresh_cache(ctx):
         embed.set_footer(text=f"Requested by {ctx.author.display_name}")
         await ctx.send(embed=embed)
 
-@bot.command(name='help')
-async def help_command(ctx):
+@bot.command(name='info')
+async def info_command(ctx):
     """Show help information"""
     embed = discord.Embed(
         title="🎮 Truth and Truth Bot - Help",
@@ -162,7 +166,7 @@ async def help_command(ctx):
         `!random` - Get a random question of any type
         `!stats` - Show bot statistics
         `!refresh` - Refresh the question cache
-        `!help` - Show this help message
+        `!info` - Show this help message
         """,
         inline=False
     )
@@ -182,7 +186,7 @@ async def help_command(ctx):
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
-        await ctx.send("❌ Command not found! Use `!help` to see available commands.")
+        await ctx.send("❌ Command not found! Use `!info` to see available commands.")
     elif isinstance(error, commands.MissingPermissions):
         await ctx.send("❌ You don't have permission to use this command!")
     else:
